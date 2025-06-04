@@ -11,7 +11,7 @@ export class DegreesController {
   create(@Body() createDegreeDto: CreateDegreeDto) {
     return this.degreesService.create(createDegreeDto);
   }
-/////////////////////////////////////////////////////////////////////////////////////
+
   @Get()
   findAll() {
     return this.degreesService.findAll();
@@ -26,7 +26,6 @@ export class DegreesController {
   getProfessorOfDegree(@Param('id') id: string) {
     return this.degreesService.getProfessorOfSubject(+id);
   }
-/////////////////////////////////////////////////////////////////////////////////////
 
   @Get(':id')
   findOne(@Param('id') id: string) {

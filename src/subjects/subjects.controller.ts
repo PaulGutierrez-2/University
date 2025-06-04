@@ -11,7 +11,7 @@ export class SubjectsController {
   create(@Body() createSubjectDto: CreateSubjectDto) {
     return this.subjectsService.create(createSubjectDto);
   }
-/////////////////////////////////////////////////////////////////////////////////////
+
   @Get()
   findAll() {
     return this.subjectsService.findAll();
@@ -26,7 +26,6 @@ export class SubjectsController {
   getProfessorOfSubject(@Param('id') id: string) {
     return this.subjectsService.getProfessorOfSubject(+id)
   }
-/////////////////////////////////////////////////////////////////////////////////////
 
   @Get(':id')
   findOne(@Param('id') id: string) {

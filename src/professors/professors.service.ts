@@ -29,14 +29,14 @@ export class ProfessorsService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} professor`;
+    return this.prisma.professor.findUnique({where: { id }});
   }
 
-  update(id: number, updateProfessorDto: UpdateProfessorDto) {
-    return `This action updates a #${id} professor`;
+  update(id: number, data: UpdateProfessorDto) {
+    return this.prisma.professor.update({ where: { id }, data });
   }
 
   remove(id: number) {
-    return `This action removes a #${id} professor`;
+    return this.prisma.professor.delete({ where: { id } });
   }
 }

@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { CreateDegreeDto } from './dto/create-degree.dto';
 import { UpdateDegreeDto } from './dto/update-degree.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { Degree } from 'generated/prisma';
 
 @Injectable()
 export class DegreesService {
@@ -34,14 +33,14 @@ export class DegreesService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} degree`;
+    return this.prisma.degree.findUnique({where: { id }});
   }
 
-  update(id: number, updateDegreeDto: UpdateDegreeDto) {
-    return `This action updates a #${id} degree`;
+  update(id: number, data: UpdateDegreeDto) {
+    return this.prisma.degree.update({ where: { id }, data });
   }
 
   remove(id: number) {
-    return `This action removes a #${id} degree`;
+    return this.prisma.degree.delete({where: { id }});
   }
 }

@@ -8,7 +8,6 @@ export class StudentsService {
 
   constructor( private prisma: PrismaService) {}
 
-  // src/students/students.service.ts
   create(createStudentDto: CreateStudentDto) {
     const { name, degreeIds, subjectIds } = createStudentDto;
   
@@ -25,8 +24,6 @@ export class StudentsService {
     });
   }
   
-
-
   findAll() {
     return this.prisma.student.findMany();
   }
@@ -39,11 +36,13 @@ export class StudentsService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} student`;
+    return this.prisma.student.findUnique({
+      where: { id },
+    });
   }
-
+  
   update(id: number, data: UpdateStudentDto) {
-    return `This action updates a #${id} student`;
+    return this.prisma.student.update({where: { id }, data});
   }
 
   remove(id: number) {

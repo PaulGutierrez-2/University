@@ -22,6 +22,11 @@ export class StudentsController {
     return this.studentsService.findOne(+id);
   }
 
+  @Get(':id/subject-degree')
+  getSubjectAndDegreeOfStudent(@Param('id') id: string) {
+    return this.studentsService.getSubjectAndDegreeOfStudent(+id);
+  }
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateStudentDto: UpdateStudentDto) {
     return this.studentsService.update(+id, updateStudentDto);
