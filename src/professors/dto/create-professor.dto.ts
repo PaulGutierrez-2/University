@@ -1,6 +1,6 @@
 export class CreateProfessorDto {
-    name: string;
-    subjectIds?: number[];
-    degreeIds?: number[];
-  }
-  
+  userId: number;
+  code: string;
+  subjectIds?: number[];
+  degreeIds?: number[];
+}

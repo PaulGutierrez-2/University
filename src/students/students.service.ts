@@ -9,11 +9,12 @@ export class StudentsService {
   constructor( private prisma: PrismaService) {}
 
   create(createStudentDto: CreateStudentDto) {
-    const { name, degreeIds, subjectIds } = createStudentDto;
+    const { userId, code, degreeIds, subjectIds } = createStudentDto;
   
     return this.prisma.student.create({
       data: {
-        name,
+        userId,
+        code,
         degrees: degreeIds?.length
           ? { connect: degreeIds.map(id => ({ id })) }
           : undefined,
@@ -26,6 +27,39 @@ export class StudentsService {
   
   findAll() {
     return this.prisma.student.findMany();
+  }
+
+  // PAGINACIÓN
+  async findAllPaginated(page: number = 1, pageSize: number = 10) {
+    const skip = (page - 1) * pageSize;
+    const [data, total] = await this.prisma.$transaction([
+      this.prisma.student.findMany({
+        skip,
+        take: pageSize,
+        orderBy: { id: 'asc' },
+      }),
+      this.prisma.student.count(),
+    ]);
+    return {
+      data,
+      total,
+      page,
+      pageSize,
+      totalPages: Math.ceil(total / pageSize),
+    };
+  }
+
+  // OPERACIÓN LÓGICA: Buscar por código o userId
+  async findByCodeOrUser(term: string) {
+    return this.prisma.student.findMany({
+      where: {
+        OR: [
+          { code: { contains: term, mode: 'insensitive' } },
+          { user: { email: { contains: term, mode: 'insensitive' } } },
+        ],
+      },
+      include: { user: true },
+    });
   }
 
   getSubjectAndDegreeOfStudent(id: number) {

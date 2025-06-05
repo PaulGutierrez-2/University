@@ -1,5 +1,7 @@
 export class CreateSubjectDto {
-    name: string;
-    degreeId?: number;
-  }
-  
+  name: string;
+  code: string;
+  degreeId: number;
+  professorIds?: number[];
+  studentIds?: number[];
+}

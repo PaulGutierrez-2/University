@@ -117,25 +117,87 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.UserScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  password: 'password',
+  name: 'name',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.RoleScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PermissionScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  resource: 'resource',
+  action: 'action',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.UserRoleScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  roleId: 'roleId',
+  degreeId: 'degreeId',
+  subjectId: 'subjectId',
+  assignedAt: 'assignedAt',
+  assignedBy: 'assignedBy',
+  isActive: 'isActive'
+};
+
+exports.Prisma.RolePermissionScalarFieldEnum = {
+  id: 'id',
+  roleId: 'roleId',
+  permissionId: 'permissionId'
+};
+
 exports.Prisma.DegreeScalarFieldEnum = {
   id: 'id',
-  name: 'name'
+  name: 'name',
+  code: 'code',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SubjectScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  degreeId: 'degreeId'
+  code: 'code',
+  degreeId: 'degreeId',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.ProfessorScalarFieldEnum = {
   id: 'id',
-  name: 'name'
+  userId: 'userId',
+  code: 'code',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.StudentScalarFieldEnum = {
   id: 'id',
-  name: 'name'
+  userId: 'userId',
+  code: 'code',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -148,8 +210,18 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
 
 exports.Prisma.ModelName = {
+  User: 'User',
+  Role: 'Role',
+  Permission: 'Permission',
+  UserRole: 'UserRole',
+  RolePermission: 'RolePermission',
   Degree: 'Degree',
   Subject: 'Subject',
   Professor: 'Professor',
