@@ -94,10 +94,6 @@ export class ProfessorsService {
     });
   }
 
-  findAll() {
-    return this.prisma.professor.findMany();
-  }
-
   findOne(id: number) {
     return this.prisma.professor.findUnique({ where: { id } });
   }

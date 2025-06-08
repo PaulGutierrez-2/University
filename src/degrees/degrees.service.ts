@@ -12,10 +12,6 @@ export class DegreesService {
     return this.prisma.degree.create({data});
   }
 
-  findAll() {
-    return this.prisma.degree.findMany();
-  }
-
   // PAGINACIÓN
   async findAllPaginated(page: number = 1, pageSize: number = 10) {
     const skip = (page - 1) * pageSize;
@@ -46,20 +42,6 @@ export class DegreesService {
         ],
       },
     });
-  }
-
-  countStudentsInDegree(id: number) {
-    return this.prisma.degree.findUnique({
-      where: { id },
-      include: { students: true },
-    }).then(degree => ({ count: degree?.students.length || 0 }));
-  }
-
-  getProfessorOfSubject(id: number) {
-    return this.prisma.degree.findUnique({
-      where: { id },
-      include: { professors: true },
-    }).then(subject => subject?.professors)
   }
 
   findOne(id: number) {

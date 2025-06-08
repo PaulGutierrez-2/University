@@ -24,12 +24,6 @@ export class ProfessorsController {
     return this.professorsService.createWithRelations(createProfessorDto);
   }
 
-  @Get()
-  @Roles('admin', 'profesor')
-  findAll() {
-    return this.professorsService.findAll();
-  }
-
   // Paginación de profesores
   @Get('paginated')
   @Roles('admin', 'profesor')

@@ -161,3 +161,103 @@ model Student {
   
   @@map("students")
 }
+
+// Vista para detalles completos de usuarios
+model UserDetails {
+  id            Int       @id
+  email         String
+  name          String
+  isActive      Boolean   @map("is_active")
+  createdAt     DateTime  @map("created_at")
+  updatedAt     DateTime  @map("updated_at")
+  userType      String    @map("user_type")
+  studentCode   String?   @map("student_code")
+  professorCode String?   @map("professor_code")
+
+  @@ignore
+}
+
+// Vista para resumen de profesores
+model ProfessorSummary {
+  professorId     Int     @id @map("professor_id")
+  professorCode   String  @map("professor_code")
+  professorName   String  @map("professor_name")
+  email           String
+  isActive        Boolean @map("is_active")
+  totalSubjects   Int     @map("total_subjects")
+  totalDegrees    Int     @map("total_degrees")
+  degreeNames     String? @map("degree_names")
+  
+  @@ignore
+}
+
+// Vista para resumen de estudiantes
+model StudentSummary {
+  studentId     Int     @id @map("student_id")
+  studentCode   String  @map("student_code")
+  studentName   String  @map("student_name")
+  email         String
+  isActive      Boolean @map("is_active")
+  totalSubjects Int     @map("total_subjects")
+  totalDegrees  Int     @map("total_degrees")
+  degreeNames   String? @map("degree_names")
+  
+  @@ignore
+}
+
+// Vista para detalles de roles de usuario
+model UserRoleDetails {
+  userRoleId        Int      @id @map("user_role_id")
+  userId            Int      @map("user_id")
+  userName          String   @map("user_name")
+  email             String
+  roleId            Int      @map("role_id")
+  roleName          String   @map("role_name")
+  roleDescription   String?  @map("role_description")
+  degreeName        String?  @map("degree_name")
+  subjectName       String?  @map("subject_name")
+  assignedAt        DateTime @map("assigned_at")
+  isActive          Boolean  @map("is_active")
+  
+  @@ignore
+}
+
+// Vista para resumen de permisos por rol
+model RolePermissionsSummary {
+  roleId         Int     @id @map("role_id")
+  roleName       String  @map("role_name")
+  totalPermissions Int   @map("total_permissions")
+  resources      String?
+  actions        String?
+  permissionList String? @map("permission_list")
+  
+  @@ignore
+}
+
+// Vista para detalles de materias
+model SubjectDetails {
+  subjectId       Int     @id @map("subject_id")
+  subjectName     String  @map("subject_name")
+  subjectCode     String  @map("subject_code")
+  isActive        Boolean @map("is_active")
+  degreeId        Int     @map("degree_id")
+  degreeName      String  @map("degree_name")
+  degreeCode      String  @map("degree_code")
+  totalProfessors Int     @map("total_professors")
+  totalStudents   Int     @map("total_students")
+  
+  @@ignore
+}
+
+// Vista para estadísticas por carrera
+model DegreeStatistics {
+  degreeId        Int     @id @map("degree_id")
+  degreeName      String  @map("degree_name")
+  degreeCode      String  @map("degree_code")
+  isActive        Boolean @map("is_active")
+  totalSubjects   Int     @map("total_subjects")
+  totalStudents   Int     @map("total_students")
+  totalProfessors Int     @map("total_professors")
+  
+  @@ignore
+}

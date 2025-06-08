@@ -24,12 +24,6 @@ export class DegreesController {
     return this.degreesService.createWithRelations(createDegreeDto);
   }
 
-  @Get()
-  @Roles('admin', 'profesor')
-  findAll() {
-    return this.degreesService.findAll();
-  }
-
   // Paginación de degrees
   @Get('paginated')
   @Roles('admin', 'profesor')
@@ -45,18 +39,6 @@ export class DegreesController {
   @Roles('admin', 'profesor')
   findByNameOrCode(@Query('term') term: string) {
     return this.degreesService.findByNameOrCode(term);
-  }
-
-  @Get(':id/student-count')
-  @Roles('admin', 'profesor')
-  countStudentsInDegree(@Param('id') id: string) {
-    return this.degreesService.countStudentsInDegree(+id);
-  }
-
-  @Get(':id/professor')
-  @Roles('admin', 'profesor')
-  getProfessorOfDegree(@Param('id') id: string) {
-    return this.degreesService.getProfessorOfSubject(+id);
   }
 
   @Get(':id')

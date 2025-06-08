@@ -26,24 +26,6 @@ export class SubjectsService {
     });
   }
 
-  findAll() {
-    return this.prisma.subject.findMany();
-  }
-
-  countStudentsInSubject(id: number) {
-    return this.prisma.subject.findUnique({
-      where: { id },
-      include: { students: true },
-    }).then(subject => ({ count: subject?.students.length || 0 }));
-  }
-
-  getProfessorOfSubject(id: number) {
-    return this.prisma.subject.findUnique({
-      where: { id },
-      include: { professors: true },
-    }).then(subject => subject?.professors);
-  }
-
   findOne(id: number) {
     return this.prisma.subject.findUnique({ where: { id } });
   }
@@ -75,18 +57,6 @@ export class SubjectsService {
       pageSize,
       totalPages: Math.ceil(total / pageSize),
     };
-  }
-
-  // OPERACIONES LÓGICAS
-  async findByNameOrCode(term: string) {
-    return this.prisma.subject.findMany({
-      where: {
-        OR: [
-          { name: { contains: term, mode: 'insensitive' } },
-          { code: { contains: term, mode: 'insensitive' } },
-        ],
-      },
-    });
   }
 
   // =========================

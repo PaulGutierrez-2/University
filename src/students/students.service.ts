@@ -24,10 +24,6 @@ export class StudentsService {
       },
     });
   }
-  
-  findAll() {
-    return this.prisma.student.findMany();
-  }
 
   // PAGINACIÓN
   async findAllPaginated(page: number = 1, pageSize: number = 10) {
@@ -60,13 +56,6 @@ export class StudentsService {
       },
       include: { user: true },
     });
-  }
-
-  getSubjectAndDegreeOfStudent(id: number) {
-    return this.prisma.student.findUnique({
-      where: { id },
-      include: { subjects: true, degrees: true },
-    })
   }
 
   findOne(id: number) {

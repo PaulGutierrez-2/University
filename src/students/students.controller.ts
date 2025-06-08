@@ -17,12 +17,6 @@ export class StudentsController {
     return this.studentsService.create(createStudentDto);
   }
 
-  @Get()
-  @Roles('admin', 'profesor')
-  findAll() {
-    return this.studentsService.findAll();
-  }
-
   // Paginación de estudiantes
   @Get('paginated')
   @Roles('admin', 'profesor')
@@ -44,12 +38,6 @@ export class StudentsController {
   @Roles('admin', 'profesor', 'usuario')
   findOne(@Param('id') id: string) {
     return this.studentsService.findOne(+id);
-  }
-
-  @Get(':id/subject-degree')
-  @Roles('admin', 'profesor')
-  getSubjectAndDegreeOfStudent(@Param('id') id: string) {
-    return this.studentsService.getSubjectAndDegreeOfStudent(+id);
   }
 
   @Patch(':id')

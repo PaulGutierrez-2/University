@@ -11,10 +11,22 @@ import { AuthModule } from './auth/auth.module';
 import { PermissionsModule } from './jwt/permissions/permissions.module';
 import { RolesModule } from './jwt/roles/roles.module';
 import { UsersModule } from './jwt/users/users.module';
+import { DashboardController } from './services/dashboard.controller';
+import { UserDetailsService } from './services/user-details.service';
+import { AcademicStatsService } from './services/academic-stats.service';
+import { RolePermissionsService } from './services/role-permissions.service';
+import { DashboardService } from './services/dashboard.service';
 
 @Module({
   imports: [StudentsModule, DegreesModule, SubjectsModule, ProfessorsModule, PrismaModule, AuthModule, UsersModule, RolesModule, PermissionsModule],
-  controllers: [AppController],
-  providers: [AppService, PrismaService],
+  controllers: [AppController, DashboardController],
+  providers: [
+    AppService,
+    PrismaService,
+    UserDetailsService,
+    AcademicStatsService,
+    RolePermissionsService,
+    DashboardService,
+  ],
 })
 export class AppModule {}

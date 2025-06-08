@@ -25,13 +25,6 @@ export class SubjectsController {
     return this.subjectsService.createWithRelations(createSubjectDto);
   }
 
-  // Obtener todas las materias (sin paginación)
-  @Get()
-  @Roles('admin', 'profesor')
-  findAll() {
-    return this.subjectsService.findAll();
-  }
-
   // Paginación de materias
   @Get('paginated')
   @Roles('admin', 'profesor')
@@ -40,27 +33,6 @@ export class SubjectsController {
     @Query('pageSize') pageSize: string = '10'
   ) {
     return this.subjectsService.findAllPaginated(Number(page), Number(pageSize));
-  }
-
-  // Búsqueda lógica por nombre o código
-  @Get('search')
-  @Roles('admin', 'profesor')
-  findByNameOrCode(@Query('term') term: string) {
-    return this.subjectsService.findByNameOrCode(term);
-  }
-
-  // Cantidad de estudiantes en una materia
-  @Get(':id/student-count')
-  @Roles('admin', 'profesor')
-  countStudentsInSubject(@Param('id') id: string) {
-    return this.subjectsService.countStudentsInSubject(+id);
-  }
-
-  // Profesores de una materia
-  @Get(':id/professor')
-  @Roles('admin', 'profesor')
-  getProfessorOfSubject(@Param('id') id: string) {
-    return this.subjectsService.getProfessorOfSubject(+id)
   }
 
   // Obtener una materia por ID
